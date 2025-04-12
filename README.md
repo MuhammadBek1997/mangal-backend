@@ -11,8 +11,8 @@ URL/api/restaurant/123/add-food
 
 Update:
 
-URL/api/restaurant/123/update-food/food:id
+URL/api/restaurant/123/update-food/foodID
 
 Delete:
 
-URL/api/restaurant/123/delete-food/food:id
+URL/api/restaurant/123/delete-food/foodID
