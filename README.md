@@ -9,9 +9,21 @@ Post:
 
 URL/api/restaurant/123/add-food
 
+body:
+{
+  "title":"food title",
+  "price":"food price"
+}
+
 Update:
 
 URL/api/restaurant/123/update-food/foodID
+
+body:
+{
+  "title":"food title",
+  "price":"food price"
+}
 
 Delete:
 
