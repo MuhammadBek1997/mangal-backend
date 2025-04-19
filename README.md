@@ -3,7 +3,7 @@ URL - https://mangal-backend-production.up.railway.app/
 
 GET:
 
-URL/api/restaurant/restaurant/123
+URL/api/restaurant/123
 
 Post:
 
