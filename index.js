@@ -174,6 +174,62 @@ app.post('/api/restaurant/:id/add-client', async (req, res) => {
   }
 });
 
+// ✅ DELETE - Mijozni o'chirish
+app.delete('/api/restaurant/:id/delete-client/:clientId', async (req, res) => {
+  const { id, clientId } = req.params;
+
+  try {
+    let restaurant = await Restaurant.findOne({ id });
+    if (!restaurant) {
+      return res.status(404).json({ message: 'Restoran topilmadi' });
+    }
+
+    const clientIndex = restaurant.rest_data.clients.findIndex(client => client._id.toString() === clientId);
+    if (clientIndex === -1) {
+      return res.status(404).json({ message: 'Mijoz topilmadi' });
+    }
+
+    restaurant.rest_data.clients.splice(clientIndex, 1);
+    await restaurant.save();
+    res.status(200).json({ message: 'Mijoz muvaffaqiyatli o‘chirildi!' });
+  } catch (error) {
+    console.error('DELETE client xatolik:', error.message);
+    res.status(500).json({ message: 'Server xatosi', error: error.message });
+  }
+});
+
+// ✅ PUT - Mijozni tahrirlash
+app.put('/api/restaurant/:id/update-client/:clientId', async (req, res) => {
+  const { id, clientId } = req.params;
+  const { name, bonus, number, address } = req.body;
+
+  try {
+    let restaurant = await Restaurant.findOne({ id });
+    if (!restaurant) {
+      return res.status(404).json({ message: 'Restoran topilmadi' });
+    }
+
+    const client = restaurant.rest_data.clients.id(clientId);
+    if (!client) {
+      return res.status(404).json({ message: 'Mijoz topilmadi' });
+    }
+
+    if (name) client.name = name;
+    if (bonus !== undefined) client.bonus = bonus;
+    if (number) client.number = number;
+    if (address) {
+      if (address.lat !== undefined) client.address.lat = address.lat;
+      if (address.long !== undefined) client.address.long = address.long;
+    }
+
+    await restaurant.save();
+    res.status(200).json({ message: 'Mijoz maʼlumotlari yangilandi!', client });
+  } catch (error) {
+    console.error('PUT client xatolik:', error.message);
+    res.status(500).json({ message: 'Server xatosi', error: error.message });
+  }
+});
+
 // Serverni ishga tushirish
 app.listen(5000, () => {
   console.log('Server 5000-portda ishga tushdi');
