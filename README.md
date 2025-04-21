@@ -30,3 +30,39 @@ body:
 Delete:
 
 URL/api/restaurant/123/delete-food/foodID
+
+
+Clients
+
+Post:
+
+URL/api/restaurant/123/add-client
+
+body:
+{
+  "name":"food title",
+  "number":"food price",
+  "address":{
+    lat: number,
+    long:number
+  }
+}
+
+Edit:
+
+URL/api/restaurant/123/update-client/clientID
+
+body:
+{
+  "name":"food title",
+  "number":"food price",
+  "address":{
+    lat: number,
+    long:number
+  }
+}
+
+
+delete:
+
+URL/api/restaurant/123/delete-client/clientID
