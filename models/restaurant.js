@@ -22,6 +22,7 @@ const clientSchema = new mongoose.Schema({
   name: String,
   bonus: Number,
   number: Number,
+  gender: String,
   address: {
     lat: Number,
     long: Number

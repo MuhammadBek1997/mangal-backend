@@ -147,9 +147,9 @@ app.delete('/api/restaurant/:id/delete-food/:foodId', async (req, res) => {
 // ✅ POST - Yangi mijoz (client) qo‘shish
 app.post('/api/restaurant/:id/add-client', async (req, res) => {
   const { id } = req.params;
-  const { name, bonus, number, address } = req.body;
+  const { name, bonus, number,gender, address } = req.body;
 
-  if (!name || !bonus || !number || !address || !address.lat || !address.long) {
+  if (!name || !bonus || !number || !gender || !address || !address.lat || !address.long) {
     return res.status(400).json({ message: "Barcha maydonlar to'liq to‘ldirilishi kerak (name, bonus, number, address.lat, address.long)" });
   }
 
@@ -163,6 +163,7 @@ app.post('/api/restaurant/:id/add-client', async (req, res) => {
       name,
       bonus,
       number,
+      gender,
       address
     });
 
@@ -201,7 +202,7 @@ app.delete('/api/restaurant/:id/delete-client/:clientId', async (req, res) => {
 // ✅ PUT - Mijozni tahrirlash
 app.put('/api/restaurant/:id/update-client/:clientId', async (req, res) => {
   const { id, clientId } = req.params;
-  const { name, bonus, number, address } = req.body;
+  const { name, bonus, number,gender, address } = req.body;
 
   try {
     let restaurant = await Restaurant.findOne({ id });
@@ -217,6 +218,7 @@ app.put('/api/restaurant/:id/update-client/:clientId', async (req, res) => {
     if (name) client.name = name;
     if (bonus !== undefined) client.bonus = bonus;
     if (number) client.number = number;
+    if (gender) client.gender = gender;
     if (address) {
       if (address.lat !== undefined) client.address.lat = address.lat;
       if (address.long !== undefined) client.address.long = address.long;
