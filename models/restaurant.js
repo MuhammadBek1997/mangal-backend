@@ -21,7 +21,7 @@ const adminSchema = new mongoose.Schema({
 const clientSchema = new mongoose.Schema({
   name: String,
   bonus: Number,
-  number: Number,
+  number: String,
   gender: String,
   address: {
     lat: Number,
