@@ -40,11 +40,13 @@ URL/api/restaurant/123/add-client
 
 body:
 {
-  "name":"food title",
-  "number":"food price",
+  "name":"client name", (String)
+  "bonus":client bonus, (Number)
+  "number":"client number", (String)
+  "gender":"client gender", (String)
   "address":{
     lat: number,
-    long:number
+    long:number,
   }
 }
 
@@ -54,11 +56,13 @@ URL/api/restaurant/123/update-client/clientID
 
 body:
 {
-  "name":"food title",
-  "number":"food price",
+  "name":"client name", (String)
+  "bonus":client bonus, (Number)
+  "number":"client number", (String)
+  "gender":"client gender", (String)
   "address":{
     lat: number,
-    long:number
+    long:number,
   }
 }
 
